@@ -1,0 +1,11 @@
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\bin\Debug\TwitterSample.exe.config
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\bin\Debug\TwitterSample.exe
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\bin\Debug\TwitterSample.pdb
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\bin\Debug\Newtonsoft.Json.dll
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\bin\Debug\Newtonsoft.Json.xml
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\obj\x86\Debug\TwitterSample.csprojResolveAssemblyReference.cache
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\obj\x86\Debug\TwitterSample.exe
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\obj\x86\Debug\TwitterSample.pdb
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample_owin\bin\Debug\TwitterSample.exe.config
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample_owin\obj\x86\Debug\TwitterSample.exe
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample_owin\obj\x86\Debug\TwitterSample.pdb

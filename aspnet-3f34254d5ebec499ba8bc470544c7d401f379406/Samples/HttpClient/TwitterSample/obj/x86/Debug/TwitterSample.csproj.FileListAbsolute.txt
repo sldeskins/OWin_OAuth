@@ -1,0 +1,1 @@
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\TwitterSample\bin\Debug\TwitterSample.exe.config

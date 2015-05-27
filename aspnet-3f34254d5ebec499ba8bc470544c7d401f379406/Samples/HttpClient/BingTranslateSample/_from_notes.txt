@@ -1,0 +1,13 @@
+https://msdn.microsoft.com/en-us/library/dn133609.aspx  - the translate example that replaces BING Translate
+
+learn more
+https://www.microsoft.com/translator/api.aspx
+
+
+  
+
+TranslatorServiceSOAPInterface
+
+http://api.microsofttranslator.com/V2/Soap.svc
+
+https://www.packtpub.com/books/content/mixing-aspnet-webforms-and-aspnet-mvc
