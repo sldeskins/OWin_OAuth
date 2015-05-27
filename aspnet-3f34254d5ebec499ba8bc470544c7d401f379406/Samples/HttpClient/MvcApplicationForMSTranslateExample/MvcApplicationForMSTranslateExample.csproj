@@ -224,7 +224,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="InterfaceExamples_And_OtherClasses\AdminToken.cs" />
+    <Compile Include="InterfaceExamples_And_OtherClasses\AdmAuthentification\AdmAccessToken.cs" />
+    <Compile Include="InterfaceExamples_And_OtherClasses\AdmAuthentification\AdmAuthentication.cs" />
+    <Compile Include="InterfaceExamples_And_OtherClasses\AdmAuthentification\AdminToken.cs" />
     <Compile Include="InterfaceExamples_And_OtherClasses\HTTPInterface_example.cs" />
     <Compile Include="InterfaceExamples_And_OtherClasses\SOAPInterface_Example.cs" />
     <Compile Include="Models\AccountModels.cs" />

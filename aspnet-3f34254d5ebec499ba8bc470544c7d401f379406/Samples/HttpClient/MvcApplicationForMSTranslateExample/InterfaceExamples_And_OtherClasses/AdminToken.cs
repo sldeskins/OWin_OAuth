@@ -11,12 +11,52 @@ using System.ServiceModel.Channels;
 using System.ServiceModel;
 using System.Threading;
 
-namespace MvcApplicationForMSTranslateExample.AdminToken
+namespace MvcApplicationForMSTranslateExample.AdmAuthentification
 {
     //Obtaining an Access Token
     public class AdminToken
     {
-        public static AdmAccessToken getAdminToken ()
+        private string _textToDetect;
+        public string TextToDetect
+        {
+            get
+            {
+                return _textToDetect;
+            }
+            set
+            {
+                _textToDetect = value;
+            }
+        }
+
+        private string _exceptionMessageText;
+        public string ExceptionMessageText
+        {
+            get
+            {
+                return _exceptionMessageText;
+            }
+            set
+            {
+                _exceptionMessageText = value;
+            }
+        }
+
+        private string _detectedLanguage;
+
+        public string DetectedLanguage
+        {
+            get
+            {
+                return _detectedLanguage;
+            }
+            set
+            {
+                _detectedLanguage = value;
+            }
+        }
+
+        public AdmAccessToken getAdminToken ()
         {
             // 3. Make an HTTP POST request to the token service
             //After you register your application with Azure DataMarket, make an HTTP POST request to the token service to obtain the access token. The parameters for the token request are URL-encoded and passed in the HTTP request body. 
@@ -47,7 +87,7 @@ namespace MvcApplicationForMSTranslateExample.AdminToken
             //Leave the appid field empty. It serves only the legacy purpose.
             //The access token is valid for 10 minutes. If the access token expires, you need to generate a new access token. The C sharp sample code below (AdmAuthentication class) can generate a new access token prior to exceeding to 10 minute time period.
 
-            AdmAccessToken admToken=null;
+            AdmAccessToken admToken = null;
             string headerValue;
             //Get Client Id and Client Secret from https://datamarket.azure.com/developer/applications/
             //Refer obtaining AccessToken (http://msdn.microsoft.com/en-us/library/hh454950.aspx) 
@@ -57,26 +97,31 @@ namespace MvcApplicationForMSTranslateExample.AdminToken
                 admToken = admAuth.GetAccessToken();
                 // Create a header with the access_token property of the returned token
                 headerValue = "Bearer " + admToken.access_token;
-                DetectMethod(headerValue);
+
+                //Console.WriteLine("Enter Text to detect language:");
+                //string textToDetect = Console.ReadLine();
+                DetectMethod(headerValue, _textToDetect);
             }
             catch (WebException e)
             {
                 ProcessWebException(e);
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey(true);
+                //Console.WriteLine("Press any key to continue...");
+                //Console.ReadKey(true);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey(true);
+                // Console.WriteLine(ex.Message);
+                // Console.WriteLine("Press any key to continue...");
+                // Console.ReadKey(true);
+                _exceptionMessageText += ex.Message;
             }
             return admToken;
         }
-        private static void DetectMethod ( string authToken )
+        private void DetectMethod ( string authToken, string textToDetect )
         {
-            Console.WriteLine("Enter Text to detect language:");
-            string textToDetect = Console.ReadLine();
+            _exceptionMessageText = "";
+            _detectedLanguage = "";
+            
             //Keep appId parameter blank as we are sending access token in authorization header.
             string uri = "http://api.microsofttranslator.com/v2/Http.svc/Detect?text=" + textToDetect;
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
@@ -89,9 +134,10 @@ namespace MvcApplicationForMSTranslateExample.AdminToken
                 {
                     System.Runtime.Serialization.DataContractSerializer dcs = new System.Runtime.Serialization.DataContractSerializer(Type.GetType("System.String"));
                     string languageDetected = (string)dcs.ReadObject(stream);
-                    Console.WriteLine(string.Format("Language detected:{0}", languageDetected));
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey(true);
+                    //Console.WriteLine(string.Format("Language detected:{0}", languageDetected));
+                    //Console.WriteLine("Press any key to continue...");
+                    //Console.ReadKey(true);
+                    _detectedLanguage = string.Format("Language detected:{0}", languageDetected);
                 }
             }
             catch
@@ -107,9 +153,12 @@ namespace MvcApplicationForMSTranslateExample.AdminToken
                 }
             }
         }
-        private static void ProcessWebException ( WebException e )
+        private void ProcessWebException ( WebException e )
         {
-            Console.WriteLine("{0}", e.ToString());
+            //Console.WriteLine("{0}", e.ToString());
+            _exceptionMessageText += string.Format("{0}", e.ToString());
+
+
             // Obtain detailed error information
             string strResponse = string.Empty;
             using (HttpWebResponse response = (HttpWebResponse)e.Response)
@@ -122,110 +171,12 @@ namespace MvcApplicationForMSTranslateExample.AdminToken
                     }
                 }
             }
-            Console.WriteLine("Http status code={0}, error message={1}", e.Status, strResponse);
+
+            // Console.WriteLine("Http status code={0}, error message={1}", e.Status, strResponse);
+            _exceptionMessageText += string.Format("Http status code={0}, error message={1}", e.Status, strResponse);
+
         }
     }
-    [DataContract]
-    public class AdmAccessToken
-    {
-        [DataMember]
-        public string access_token
-        {
-            get;
-            set;
-        }
-        [DataMember]
-        public string token_type
-        {
-            get;
-            set;
-        }
-        [DataMember]
-        public string expires_in
-        {
-            get;
-            set;
-        }
-        [DataMember]
-        public string scope
-        {
-            get;
-            set;
-        }
-    }
-    public class AdmAuthentication
-    {
-        public static readonly string DatamarketAccessUri = "https://datamarket.accesscontrol.windows.net/v2/OAuth2-13";
-        private string clientId;
-        private string clientSecret;
-        private string request;
-        private AdmAccessToken token;
-        private Timer accessTokenRenewer;
-        //Access token expires every 10 minutes. Renew it every 9 minutes only.
-        private const int RefreshTokenDuration = 9;
-        public AdmAuthentication ( string clientId, string clientSecret )
-        {
-            this.clientId = clientId;
-            this.clientSecret = clientSecret;
-            //If clientid or client secret has special characters, encode before sending request
-            this.request = string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}&scope=http://api.microsofttranslator.com", HttpUtility.UrlEncode(clientId), HttpUtility.UrlEncode(clientSecret));
-            this.token = HttpPost(DatamarketAccessUri, this.request);
-            //renew the token every specfied minutes
-            accessTokenRenewer = new Timer(new TimerCallback(OnTokenExpiredCallback), this, TimeSpan.FromMinutes(RefreshTokenDuration), TimeSpan.FromMilliseconds(-1));
-        }
-        public AdmAccessToken GetAccessToken ()
-        {
-            return this.token;
-        }
-        private void RenewAccessToken ()
-        {
-            AdmAccessToken newAccessToken = HttpPost(DatamarketAccessUri, this.request);
-            //swap the new token with old one
-            //Note: the swap is thread unsafe
-            this.token = newAccessToken;
-            Console.WriteLine(string.Format("Renewed token for user: {0} is: {1}", this.clientId, this.token.access_token));
-        }
-        private void OnTokenExpiredCallback ( object stateInfo )
-        {
-            try
-            {
-                RenewAccessToken();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(string.Format("Failed renewing access token. Details: {0}", ex.Message));
-            }
-            finally
-            {
-                try
-                {
-                    accessTokenRenewer.Change(TimeSpan.FromMinutes(RefreshTokenDuration), TimeSpan.FromMilliseconds(-1));
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(string.Format("Failed to reschedule the timer to renew access token. Details: {0}", ex.Message));
-                }
-            }
-        }
-        private AdmAccessToken HttpPost ( string DatamarketAccessUri, string requestDetails )
-        {
-            //Prepare OAuth request 
-            WebRequest webRequest = WebRequest.Create(DatamarketAccessUri);
-            webRequest.ContentType = "application/x-www-form-urlencoded";
-            webRequest.Method = "POST";
-            byte[] bytes = Encoding.ASCII.GetBytes(requestDetails);
-            webRequest.ContentLength = bytes.Length;
-            using (Stream outputStream = webRequest.GetRequestStream())
-            {
-                outputStream.Write(bytes, 0, bytes.Length);
-            }
-            using (WebResponse webResponse = webRequest.GetResponse())
-            {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(AdmAccessToken));
-                //Get deserialized object from JSON stream
-                AdmAccessToken token = (AdmAccessToken)serializer.ReadObject(webResponse.GetResponseStream());
-                return token;
-            }
-        }
-    }
+
+
 }

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
-using MvcApplicationForMSTranslateExample.AdminToken;
+using MvcApplicationForMSTranslateExample.AdmAuthentification;
 
 namespace WebApplication
 {
