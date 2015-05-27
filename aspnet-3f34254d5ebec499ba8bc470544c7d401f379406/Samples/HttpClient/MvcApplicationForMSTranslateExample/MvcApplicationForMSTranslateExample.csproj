@@ -226,7 +226,7 @@
     </Compile>
     <Compile Include="InterfaceExamples_And_OtherClasses\AdmAuthentification\AdmAccessToken.cs" />
     <Compile Include="InterfaceExamples_And_OtherClasses\AdmAuthentification\AdmAuthentication.cs" />
-    <Compile Include="InterfaceExamples_And_OtherClasses\AdmAuthentification\AdminToken.cs" />
+    <Compile Include="InterfaceExamples_And_OtherClasses\AdminToken.cs" />
     <Compile Include="InterfaceExamples_And_OtherClasses\HTTPInterface_example.cs" />
     <Compile Include="InterfaceExamples_And_OtherClasses\SOAPInterface_Example.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -431,7 +431,8 @@
   <Target Name="BeforeBuild">
   </Target> -->
   <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)..$(ProjectName)" />
+    <!--<AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)..$(ProjectName)" />-->
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>

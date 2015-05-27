@@ -12,7 +12,9 @@ namespace WebApplication
     {
         private void ExampleCode1 ()
         {
-            AdmAccessToken admToken = AdminToken.getAdminToken();
+            AdminToken adminToken = new AdminToken();
+
+            AdmAccessToken admToken = adminToken.getAdminToken();
             string text = "Use pixels to express measurements for padding and margins.";
             string from = "en";
             string to = "de";

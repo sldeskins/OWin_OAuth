@@ -91,7 +91,10 @@ namespace MvcApplicationForMSTranslateExample.AdmAuthentification
             string headerValue;
             //Get Client Id and Client Secret from https://datamarket.azure.com/developer/applications/
             //Refer obtaining AccessToken (http://msdn.microsoft.com/en-us/library/hh454950.aspx) 
-            AdmAuthentication admAuth = new AdmAuthentication("clientID", "client secret");
+            string clientID = "BTMYTestApplication";//TODO set as resource or config property
+            string clientSecret = "8fj99KnPWD0ptMp/Mg6g1ScwY7uoCpLNpA+Fsumfc64=";//TODO set as resource or config property
+
+            AdmAuthentication admAuth = new AdmAuthentication(clientID, clientSecret);
             try
             {
                 admToken = admAuth.GetAccessToken();
@@ -121,7 +124,7 @@ namespace MvcApplicationForMSTranslateExample.AdmAuthentification
         {
             _exceptionMessageText = "";
             _detectedLanguage = "";
-            
+
             //Keep appId parameter blank as we are sending access token in authorization header.
             string uri = "http://api.microsofttranslator.com/v2/Http.svc/Detect?text=" + textToDetect;
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);

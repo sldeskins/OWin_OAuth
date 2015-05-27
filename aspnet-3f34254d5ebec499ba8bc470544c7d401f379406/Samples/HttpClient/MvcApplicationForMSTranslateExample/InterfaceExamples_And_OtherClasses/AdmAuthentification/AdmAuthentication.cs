@@ -23,6 +23,19 @@ namespace MvcApplicationForMSTranslateExample.AdmAuthentification
         private Timer accessTokenRenewer;
         //Access token expires every 10 minutes. Renew it every 9 minutes only.
         private const int RefreshTokenDuration = 9;
+
+
+        private StringBuilder _sessionLogMessages = new StringBuilder();
+
+        public string SessionLogMessages
+        {
+            get
+            {
+                return _sessionLogMessages.ToString();
+            }
+            
+        }
+        
         public AdmAuthentication ( string clientId, string clientSecret )
         {
             this.clientId = clientId;
@@ -43,7 +56,9 @@ namespace MvcApplicationForMSTranslateExample.AdmAuthentification
             //swap the new token with old one
             //Note: the swap is thread unsafe
             this.token = newAccessToken;
-            Console.WriteLine(string.Format("Renewed token for user: {0} is: {1}", this.clientId, this.token.access_token));
+            //Console.WriteLine(string.Format("Renewed token for user: {0} is: {1}", this.clientId, this.token.access_token));
+            _sessionLogMessages.AppendFormat("Renewed token for user: {0} is: {1}", this.clientId, this.token.access_token);
+            _sessionLogMessages.AppendLine();
         }
         private void OnTokenExpiredCallback ( object stateInfo )
         {
@@ -53,7 +68,9 @@ namespace MvcApplicationForMSTranslateExample.AdmAuthentification
             }
             catch (Exception ex)
             {
-                Console.WriteLine(string.Format("Failed renewing access token. Details: {0}", ex.Message));
+                //Console.WriteLine(string.Format("Failed renewing access token. Details: {0}", ex.Message));
+                _sessionLogMessages.AppendFormat(string.Format("Failed renewing access token. Details: {0}", ex.Message));
+                _sessionLogMessages.AppendLine();
             }
             finally
             {
@@ -63,7 +80,9 @@ namespace MvcApplicationForMSTranslateExample.AdmAuthentification
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(string.Format("Failed to reschedule the timer to renew access token. Details: {0}", ex.Message));
+                    //Console.WriteLine(string.Format("Failed to reschedule the timer to renew access token. Details: {0}", ex.Message));
+                    _sessionLogMessages.AppendFormat("Failed to reschedule the timer to renew access token. Details: {0}", ex.Message);
+                    _sessionLogMessages.AppendLine();
                 }
             }
         }
