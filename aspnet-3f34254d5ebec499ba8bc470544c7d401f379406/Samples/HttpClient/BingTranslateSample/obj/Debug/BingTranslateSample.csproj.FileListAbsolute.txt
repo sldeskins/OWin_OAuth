@@ -3,6 +3,6 @@ C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\
 C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\BingTranslateSample\bin\Debug\BingTranslate.pdb
 C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\BingTranslateSample\bin\Debug\Newtonsoft.Json.dll
 C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\BingTranslateSample\bin\Debug\Newtonsoft.Json.xml
+C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\BingTranslateSample\obj\Debug\BingTranslateSample.csprojResolveAssemblyReference.cache
 C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\BingTranslateSample\obj\Debug\BingTranslate.exe
 C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\BingTranslateSample\obj\Debug\BingTranslate.pdb
-C:\Exercises\OWin_OAuth\aspnet-3f34254d5ebec499ba8bc470544c7d401f379406\Samples\HttpClient\BingTranslateSample\obj\Debug\BingTranslateSample.csprojResolveAssemblyReference.cache

@@ -12,6 +12,9 @@ namespace MvcApplicationForMSTranslateExample
         public static void RegisterRoutes ( RouteCollection routes )
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+        
+           // http://localhost:62634/aspx/Shared/Layout.Master
+            routes.IgnoreRoute("{resource}.master/{*pathInfo}");
             routes.IgnoreRoute("{resource}.aspx/{*pathInfo}");
             routes.IgnoreRoute("{resource}.html/{*pathInfo}");
 
