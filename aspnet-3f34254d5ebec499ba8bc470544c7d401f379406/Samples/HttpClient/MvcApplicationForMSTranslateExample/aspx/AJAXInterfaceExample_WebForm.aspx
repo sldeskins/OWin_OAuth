@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm_Example.aspx.cs" Inherits="WebApplication.WebForm_Example" %>
+﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" CodeBehind="AJAXInterfaceExample_WebForm.aspx.cs" Inherits="WebApplication.AJAXInterfaceExample_WebForm" %>
 
 <!DOCTYPE html>
 

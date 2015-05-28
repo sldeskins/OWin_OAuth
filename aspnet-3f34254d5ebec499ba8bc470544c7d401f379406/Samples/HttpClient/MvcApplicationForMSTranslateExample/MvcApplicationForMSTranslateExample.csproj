@@ -210,6 +210,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aspx\DefaultHomeIndex.aspx.cs">
+      <DependentUpon>DefaultHomeIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\DefaultHomeIndex.aspx.designer.cs">
+      <DependentUpon>DefaultHomeIndex.aspx</DependentUpon>
+    </Compile>
     <Compile Include="aspx\AJAXInterfaceExample_WebForm.aspx.cs">
       <DependentUpon>AJAXInterfaceExample_WebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -251,6 +258,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aspx\DefaultHomeIndex.aspx" />
     <Content Include="aspx\AJAXInterfaceExample_WebForm.aspx" />
     <Content Include="aspx\HtmlPage_Simple.html" />
     <Content Include="aspx\ViewContentPage1.aspx" />

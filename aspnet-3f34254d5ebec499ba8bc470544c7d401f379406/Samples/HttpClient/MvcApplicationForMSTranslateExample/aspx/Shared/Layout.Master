@@ -1,6 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.Master.cs" Inherits="MvcApplicationForMSTranslateExample.LayoutMaster" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
@@ -9,10 +8,21 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-     <%--<webopt:BundleReference runat="server" Path="~/Content/css" /> --%>
-     <%: Styles.Render("~/Content/css") %>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
+    <%--<webopt:BundleReference runat="server" Path="~/Content/css" /> --%>
+    <%: Styles.Render("~/Content/css") %>
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config)
+        {
+            function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+        }({
+            instrumentationKey: "b3518c2d-f762-4824-9143-daee7edaf8f9"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
 </head>
 <body>
     <form runat="server">
@@ -21,7 +31,7 @@
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
                 <%--Framework Scripts--%>
 
-              <%--   <asp:ScriptReference Name="MsAjaxBundle" />--%>
+                <%--   <asp:ScriptReference Name="MsAjaxBundle" />--%>
                 <asp:ScriptReference Name="jquery" />
                 <%--    <asp:ScriptReference Name="jquery.ui.combined" />--%>
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
@@ -42,7 +52,7 @@
             <div class="content-wrapper">
                 <div class="float-left">
                     <p class="site-title">
-                        <a runat="server" href="~/">your logo here</a>
+                        <a runat="server" href="~/">WIB - Demos (aspx-master)</a>
                     </p>
                 </div>
                 <div class="float-right">
@@ -50,13 +60,13 @@
                         <asp:LoginView runat="server" ViewStateMode="Disabled">
                             <AnonymousTemplate>
                                 <ul>
-                                    <li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>
-                                    <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
+                                    <li><a id="registerLink" runat="server" href="/Account/Register">Register</a></li>
+                                    <li><a id="loginLink" runat="server" href="/Account/Login">Log in</a></li>
                                 </ul>
                             </AnonymousTemplate>
                             <LoggedInTemplate>
                                 <p>
-                                    Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                    Hello, <a runat="server" class="username" href="/Account/Manage" title="Manage your account">
                                         <asp:LoginName runat="server" CssClass="username" />
                                     </a>!
                                 <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />

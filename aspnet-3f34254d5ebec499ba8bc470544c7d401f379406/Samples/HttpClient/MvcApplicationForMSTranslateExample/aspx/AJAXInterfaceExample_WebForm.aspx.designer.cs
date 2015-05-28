@@ -11,7 +11,7 @@ namespace WebApplication
 {
 
 
-    public partial class WebForm_Example
+    public partial class AJAXInterfaceExample_WebForm
     {
 
         /// <summary>
