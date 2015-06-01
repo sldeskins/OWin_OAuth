@@ -12,10 +12,14 @@ namespace TwitterSample.OAuth
     public class OAuthMessageHandler : DelegatingHandler
     {
         // Obtain these values by creating a Twitter app at http://dev.twitter.com/
-        private static string _consumerKey = "Enter your consumer key";
-        private static string _consumerSecret = "Enter your consumer secret";
-        private static string _token = "Enter your token";
-        private static string _tokenSecret = "Enter your token secret";
+        //private static string _consumerKey = "Enter your consumer key";
+        //private static string _consumerSecret = "Enter your consumer secret";
+        //private static string _token = "Enter your token";
+        //private static string _tokenSecret = "Enter your token secret";
+        private static string _consumerKey = "JDddh511UDFy6eNTEorFe4Yhz";
+        private static string _consumerSecret = "m0EhwnKLPtoY2DyxT1qvsYVdLaYde51DqkeKSQxkrTp1Dg4lWz";
+        private static string _token = "78293409-KnRLZzbOg5qpVbBqzLEBuuFqPGkAYWkqlwTyccI6H";
+        private static string _tokenSecret = "ugwpIEiveITKHOmi7NR1kjRMThQWVXWvXXwOGK4orhnuS";
 
         private OAuthBase _oAuthBase = new OAuthBase();
 
