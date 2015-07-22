@@ -1,0 +1,9 @@
+Securing Your Application with OAuth and Passport
+
+In this course, we will cover OAuth authentication with Google, Twitter, and Facebook. We will also use tokens to make authentic API calls.
+by Jonathan Mills 
+
+node js with passport
+Linux
+
+
