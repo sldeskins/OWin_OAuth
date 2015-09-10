@@ -1,2 +1,0 @@
-OAuth
-http://blogs.msdn.com/b/webdev/archive/2012/08/26/asp-net-web-api-and-httpclient-samples.aspx
